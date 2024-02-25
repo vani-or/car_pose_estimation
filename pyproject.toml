@@ -24,6 +24,7 @@ hydra-core = "1.2.0"
 tensorflow-io-gcs-filesystem = "0.34"
 tensorflow-hub = "^0.16.1"
 matplotlib = "3.5.2"
+pillow = "9.2.0"
 
 [build-system]
 requires = ["poetry-core"]

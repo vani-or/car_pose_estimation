@@ -1,12 +1,13 @@
 import math
-
+import os
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image, ImageDraw
 
 
 def plot_scheme(angle_pred, angle_true=None):
-    with Image.open("../static_files/vehicle_scheme.jpg") as img:
+    image_path = os.path.realpath(os.path.join(os.path.dirname(__file__), '../../static_files', "vehicle_scheme.jpg"))
+    with Image.open(image_path) as img:
         w, h = img.size
 
         img1 = ImageDraw.Draw(img)
