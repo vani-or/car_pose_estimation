@@ -58,9 +58,17 @@ def main(approach, model_path: str, current_config=None):
         "horizontal_flip_pose_sin_cos_output": horizontal_flip_pose_sin_cos_output,
     })
 
-    metrics = model.evaluate(validation_dataset, verbose=2)
+    metric_values = model.evaluate(validation_dataset, verbose=2)
+    metric_names = [
+        'loss',
+        'mean_absolute_angle_error',
+        'median_absolute_angle_error',
+        'r2',
+        'rmse',
+        'acc_pi_6',
+    ]
 
-    return metrics
+    return dict(zip(metric_names, metric_values))
 
 
 if __name__ == "__main__":
