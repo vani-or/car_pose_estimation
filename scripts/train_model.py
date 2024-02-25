@@ -24,7 +24,7 @@ from car_azimuth_predictor.utils.training_tools import (
 from car_azimuth_predictor.model_generation import generate_model
 
 
-def main(approach: str = "1", current_config=None):
+def main(approach: str, save_model_path: str, train_history_path: str,  current_config=None):
     assert approach in ["1", "2"], "Approach must be 1 or 2"
 
     n_neurons_middle_layer = 100
@@ -110,6 +110,8 @@ def main(approach: str = "1", current_config=None):
         loss=loss,
         metrics=metrics,
         verbose=1,
+        save_model_path=save_model_path,
+        train_history_path=train_history_path
     )
 
     metrics = model.evaluate(validation_dataset, verbose=2)
@@ -125,16 +127,16 @@ if __name__ == "__main__":
     parser.add_argument("--learning_rate", type=float, default=0.001)
     parser.add_argument("--batch_size", type=int, default=32)
     parser.add_argument("--should_augment", type=bool, default=True)
+    parser.add_argument("--save_model_path", type=str, help="Path to save the model")
+    parser.add_argument("--train_history_path", type=str, help="Path to save the training history")
 
     args = parser.parse_args()
 
     current_config = load_config()
 
-    main(approach=args.approach, current_config=current_config)
-
-# study = optuna.create_study()
-# study.optimize(objective, n_trials=25)
-#
-#
-# with open("hyperparameter_search/approach1_study.pkl", "wb") as fp:
-#     pkl.dump(study, fp)
+    main(
+        approach=args.approach,
+        save_model_path=args.save_model_path,
+        train_history_path=args.train_history_path,
+        current_config=current_config
+    )
