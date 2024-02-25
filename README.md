@@ -1,10 +1,8 @@
-# Car azimuth predictor
+# Vehicle Pose Estimation
 
 This model implements a paper "Vehicle Pose Estimation: Exploring Angular Representations".
-Our research utilizes the PASCAL3D+ dataset, which offers a diverse range of object categories, including cars,
-with annotated azimuth estimations for each photograph. We introduce two architectures that approach az-
-imuth estimation as a regression problem, each employing a deep convolutional neural network (DCNN)
-backbone but diverging in their output definition strategies.
+
+Our research utilizes the PASCAL3D+ dataset, which offers a diverse range of object categories, including cars,  with annotated azimuth estimations for each photograph. We introduce two architectures that approach azimuth estimation as a regression problem, each employing a deep convolutional neural network (DCNN) backbone but diverging in their output definition strategies.
 
 ![Azimuth definition](docs/predictions_samples.jpeg)
 
@@ -28,7 +26,7 @@ We tired two different approaches to formalize the output of the model, since we
 * Recover φ pred := atan2(o1, o2);
 * Loss function: MSE
 
-![Approach A](docs/approach_a.png)
+![Approach 1](docs/approach_a.png)
 
 ### Approach 2: Directional discriminators
 
@@ -39,6 +37,8 @@ We Split the angle prediction into two discriminators:
 So we define two angles α & β as shown below
 
 ![Approach 2 Viewpoint definition](docs/approach2_angles.png)
+
+*NB. The paper contains few mistakes in the values of β of corresponding figure, so we corrected them in the image above.*
 
 Model returns two outputs, which are absolute values of α & β.
 
