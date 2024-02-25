@@ -1,0 +1,7 @@
+pascal_zip_file_location: "data/PASCAL3D+_release1.1.zip"
+local_dataset_path: "data/raw"
+members_to_extract:
+  - "PASCAL3D+_release1.1/Annotations/car_imagenet"
+  - "PASCAL3D+_release1.1/Images/car_imagenet"
+  - "PASCAL3D+_release1.1/Image_sets/car_imagenet_train.txt"
+  - "PASCAL3D+_release1.1/Image_sets/car_imagenet_val.txt"

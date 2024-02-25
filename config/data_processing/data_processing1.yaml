@@ -1,0 +1,2 @@
+csv_filename: "annotations_angles.csv"
+dataset_base_path: "data/raw/PASCAL3D+_release1.1"

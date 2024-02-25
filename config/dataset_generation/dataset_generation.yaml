@@ -1,0 +1,11 @@
+df_path: "data/raw/PASCAL3D+_release1.1/annotations_angles.csv"
+df_train_path: "data/splitted/df_train.csv"
+df_val_path: "data/splitted/df_val.csv"
+df_test_path: "data/splitted/df_test.csv"
+images_path: "data/raw/PASCAL3D+_release1.1/Images/car_imagenet"
+gt_cols:
+  - "azimuth_norm_abs"
+  - "azimuth_radians_shifted_0.5_pi_norm_abs"
+image_width: 224
+image_height: 224
+batch_size: 32

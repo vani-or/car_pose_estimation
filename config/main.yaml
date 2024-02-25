@@ -1,0 +1,20 @@
+hydra:
+  run:
+    dir: ../hydra_logs/${now:%Y-%m-%d}/${now:%H-%M-%S}
+
+defaults:
+  - data_gathering: data_gathering1
+  - data_processing: data_processing1
+  - dataset_split: dataset_split
+  - dataset_generation: dataset_generation
+  - model_training: model_training
+  - _self_
+
+raw:
+  dir: data/raw
+
+processed:
+  dir: data/processed
+
+features:
+  dir: data/features
