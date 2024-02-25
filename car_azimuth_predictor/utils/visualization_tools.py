@@ -35,7 +35,7 @@ def plot_scheme(angle_pred, angle_true=None):
         return img
 
 
-plot_scheme(-170, -0).show()
+# plot_scheme(-170, -0).show()
 
 
 def plot_image_from_tensor(image_tensor, y_pred_angle, y_true_angle=None):
@@ -56,9 +56,7 @@ def plot_image_from_tensor(image_tensor, y_pred_angle, y_true_angle=None):
     )
 
     plt.imshow(orig_image)
-    plt.title(
-        f"Predicted: {round(y_pred_angle, 2)}, GT: {round(y_true_angle, 2) if y_true_angle is not None else None}"
-    )
+    plt.title(f"Predicted: {round(y_pred_angle, 2)}, GT: {round(y_true_angle, 2) if y_true_angle is not None else None}")
     plt.axis("off")
 
 
