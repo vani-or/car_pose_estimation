@@ -109,7 +109,7 @@ def main(approach: str, save_model_path: str, train_history_path: str,  current_
         optimizer=optimizer,
         loss=loss,
         metrics=metrics,
-        verbose=1,
+        verbose=2,
         save_model_path=save_model_path,
         train_history_path=train_history_path
     )

@@ -1,6 +1,7 @@
 import json
 import os
 import tempfile
+import pickle
 from datetime import datetime
 from pathlib import Path
 from typing import Iterable
@@ -57,7 +58,7 @@ def train_model(
             model.save(save_model_path)
 
     if train_history_path is not None:
-        with open(train_history_path, "w") as fp:
-            json.dump(train_history.history, fp)
+        with open(train_history_path, "wb") as fp:
+            pickle.dump(train_history, fp)
 
     return train_history
