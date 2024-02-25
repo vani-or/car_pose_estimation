@@ -11,7 +11,7 @@ def generate_model(config: DictConfig, top_model: Callable):
     )
 
     for layer in fe.layers:
-        layer.trainable = False
+        layer.trainable = True
 
     gap = tf.keras.layers.GlobalAveragePooling2D()(fe.output)
 

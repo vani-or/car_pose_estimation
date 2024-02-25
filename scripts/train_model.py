@@ -109,7 +109,7 @@ def main(approach: str = "1", current_config=None):
         optimizer=optimizer,
         loss=loss,
         metrics=metrics,
-        verbose=2,
+        verbose=1,
     )
 
     metrics = model.evaluate(validation_dataset, verbose=2)
@@ -119,7 +119,7 @@ def main(approach: str = "1", current_config=None):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--approach", type=str, default="2", help="Approach to use (1 = Sin/Cos, 2 = Directional discriminators)", choices=["1", "2"])
+    parser.add_argument("--approach", type=str, help="Approach to use (1 = Sin/Cos, 2 = Directional discriminators)", choices=["1", "2"])
     parser.add_argument("--n_neurons_middle_layer", type=int, default=100)
     parser.add_argument("--dropout_rate", type=float, default=0.2)
     parser.add_argument("--learning_rate", type=float, default=0.001)
