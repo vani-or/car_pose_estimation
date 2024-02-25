@@ -1,11 +1,36 @@
+import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
-
+import os
 from car_azimuth_predictor.utils.training_tools import np_get_angle_from_double_sigmoids
 from car_azimuth_predictor.utils.visualization_tools import plot_image_from_tensor
 
 
-def visualize_predictions(model, test_dataset):
+def visualize_single_predictions(model, test_dataset, save_path=None):
+    matplotlib.use('Agg')
+    for i, (x_batch, y_true_batch) in enumerate(test_dataset):
+        y_pred_batch = model.predict(x_batch)
+        for i, x, y_true, y_pred in zip(
+            range(len(x_batch)), x_batch, y_true_batch, y_pred_batch
+        ):
+            y_true_degrees = (
+                np_get_angle_from_double_sigmoids(np.expand_dims(y_true, axis=0))
+                / np.pi
+                * 180
+            )
+            y_pred_degrees = (
+                np_get_angle_from_double_sigmoids(np.expand_dims(y_pred, axis=0))
+                / np.pi
+                * 180
+            )
+
+            plot_image_from_tensor(x, float(y_pred_degrees[0]), y_true_degrees[0])
+            filepath = os.path.join(save_path, f"prediction_{i}.png")
+            plt.savefig(filepath)
+            plt.close()
+
+
+def visualize_grid_predictions(model, test_dataset, save_path=None):
     plt.figure(figsize=(24, 24))
     y_true_all = []
     y_pred_all = []

@@ -101,7 +101,7 @@ def main(approach: str, save_model_path: str, train_history_path: str,  current_
 
     optimizer = tf.keras.optimizers.Adamax(learning_rate=learning_rate)
 
-    train_history, current_datetime_strgfied = train_model(
+    train_history = train_model(
         current_config,
         model=model,
         train_dataset=train_dataset,
