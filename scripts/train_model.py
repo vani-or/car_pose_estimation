@@ -114,7 +114,7 @@ def main(approach: str, save_model_path: str, train_history_path: str,  current_
         train_history_path=train_history_path
     )
 
-    metrics = model.evaluate(validation_dataset, verbose=2)
+    metrics = model.evaluate(validation_dataset, verbose=1)
 
     return metrics[0]  # val_loss
 

@@ -25,8 +25,10 @@ def train_model(
 
     model.compile(optimizer=optimizer, loss=loss, metrics=metrics)
 
-    with tempfile.NamedTemporaryFile() as fp:
-        model_checkpoint_path = fp.name
+    with tempfile.TemporaryDirectory() as tmpdirname:
+        model_checkpoint_path = os.path.join(
+            tmpdirname, f"model_checkpoint_{datetime.now().strftime('%Y%m%d%H%M%S')}"
+        )
 
         checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(
             model_checkpoint_path, save_best_only=True, monitor="val_loss"
