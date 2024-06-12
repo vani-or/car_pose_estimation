@@ -1,6 +1,8 @@
 # Vehicle Pose Estimation
 
-This model implements a paper "Vehicle Pose Estimation: Exploring Angular Representations".
+This model implements the paper ["Vehicle Pose Estimation: Exploring Angular Representations"](https://www.scitepress.org/Link.aspx?doi=10.5220/0012574300003660) by Orlov, I.; Buzzelli, M. and Schettini, R. (2024) in _Proceedings of the 19th International Joint Conference on Computer Vision, Imaging and Computer Graphics Theory and Applications - Volume 2: VISAPP_; ISBN 978-989-758-679-8; ISSN 2184-4321, SciTePress, pages 853-860
+
+[![PDF](https://img.shields.io/badge/PDF-Download-blue)](https://www.scitepress.org/Papers/2024/125743/125743.pdf) [![DOI](https://img.shields.io/badge/DOI-10.5220/0012574300003660-blue)](https://doi.org/10.5220/0012574300003660)
 
 Our research utilizes the PASCAL3D+ dataset, which offers a diverse range of object categories, including cars,  with annotated azimuth estimations for each photograph. We introduce two architectures that approach azimuth estimation as a regression problem, each employing a deep convolutional neural network (DCNN) backbone but diverging in their output definition strategies.
 
