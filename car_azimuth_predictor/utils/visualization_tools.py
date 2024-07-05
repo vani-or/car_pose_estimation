@@ -38,16 +38,19 @@ def plot_scheme(angle_pred, angle_true=None):
 # plot_scheme(-170, -0).show()
 
 
-def plot_image_from_tensor(image_tensor, y_pred_angle, y_true_angle=None):
+def plot_image_from_tensor(image_tensor, y_pred_angle, y_true_angle=None, resize_to=(480, 480)):
     if not isinstance(image_tensor, np.ndarray):
         image_tensor = image_tensor.numpy()
     data = image_tensor.astype(int)
 
     orig_image = Image.fromarray(data.astype("uint8"), "RGB")
+    # Resize keeping the aspect ratio
+    resize_to = (min(resize_to[0], orig_image.size[0]), min(resize_to[1], orig_image.size[1]))
+    orig_image.thumbnail(resize_to, Image.LANCZOS)
 
     scheme = plot_scheme(y_pred_angle, y_true_angle)
     scheme.thumbnail(
-        (orig_image.size[0] * 0.4, orig_image.size[1] * 0.4), Image.ANTIALIAS
+        (orig_image.size[0] * 0.4, orig_image.size[1] * 0.4), Image.LANCZOS
     )
 
     orig_image.paste(
@@ -56,7 +59,10 @@ def plot_image_from_tensor(image_tensor, y_pred_angle, y_true_angle=None):
     )
 
     plt.imshow(orig_image)
-    plt.title(f"Predicted: {round(y_pred_angle, 2)}, GT: {round(y_true_angle, 2) if y_true_angle is not None else None}")
+    title = f"Predicted: {round(y_pred_angle, 2)}"
+    if y_true_angle is not None:
+        title += f", GT: {round(y_true_angle, 2)}"
+    plt.title(title)
     plt.axis("off")
 
 

@@ -200,6 +200,10 @@ def np_get_sigmoids_from_angle(angle_radians: np.ndarray) -> np.ndarray:
     return np.stack(first_sigm, second_sigm)  # TODO: not tested even once
 
 
+def np_get_angle_from_sin_cos(y_sincos: np.ndarray) -> np.ndarray:
+    return np.arctan2(y_sincos[:, 0], y_sincos[:, 1])
+
+
 def tf_mean_absolute_angle_error_double_sigmoid(
     y_true: tf.Tensor, y_pred: tf.Tensor
 ) -> tf.Tensor:

@@ -105,3 +105,15 @@ To validate the model, run:
 ```bash
 poetry run python scripts/validate_model.py
 ```
+
+### Inference
+
+To run inference on a folder of images, run:
+
+```bash
+poetry run python scripts/inference.py --model_path=model_file.h5 --approach=2 --images_path=tests/sample_images --output_path=./samples_results.json
+```
+
+To create the visualization of the results, add the `--visualizations_path=./samples_visualization` argument.
+
+Check the source of the `scripts/inference.py` for more details on the arguments.
