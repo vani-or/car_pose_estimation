@@ -20,6 +20,8 @@ def train_model(
     metrics: Iterable,
     save_model_path: str = None,
     train_history_path: str = None,
+    epochs: int = 100,
+    early_stopping_patience: int = 10,
     verbose: int = 1,
 ):
     """Function to train the model"""
@@ -38,8 +40,8 @@ def train_model(
         es_callback = tf.keras.callbacks.EarlyStopping(
             monitor="val_loss",
             min_delta=0.0,
-            patience=10,
-            verbose=1,
+            patience=early_stopping_patience,
+            verbose=verbose,
             mode="min",
             baseline=None,
             restore_best_weights=True,
@@ -47,7 +49,7 @@ def train_model(
 
         train_history = model.fit(
             train_dataset,
-            epochs=100,
+            epochs=epochs,
             use_multiprocessing=True,
             callbacks=[checkpoint_callback, es_callback],
             validation_data=validation_dataset,

@@ -77,7 +77,7 @@ def main(approach, model_path: str, current_config=None, visualizations_path: st
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--approach", type=str, help="Approach to use (1 = Sin/Cos, 2 = Directional discriminators)", choices=["1", "2"])
+    parser.add_argument("--approach", type=str, help="Approach to use (1 = Sin & Cos, 2 = Directional discriminators)", choices=["1", "2"])
     parser.add_argument("--model_path", type=str, help="Path to the model to validate")
     parser.add_argument("--visualizations_path", type=str, default=None, help="Path to save visualizations")
 

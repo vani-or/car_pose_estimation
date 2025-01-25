@@ -24,7 +24,15 @@ from car_azimuth_predictor.utils.training_tools import (
 from car_azimuth_predictor.model_generation import generate_model
 
 
-def main(approach: str, save_model_path: str, train_history_path: str,  current_config=None):
+def main(
+    approach: str,
+    save_model_path: str,
+    train_history_path: str,
+    current_config=None,
+    verbose=2,
+    epochs=100,
+    early_stopping_patience=10,
+):
     assert approach in ["1", "2"], "Approach must be 1 or 2"
 
     n_neurons_middle_layer = 100
@@ -109,9 +117,11 @@ def main(approach: str, save_model_path: str, train_history_path: str,  current_
         optimizer=optimizer,
         loss=loss,
         metrics=metrics,
-        verbose=2,
+        verbose=verbose,
         save_model_path=save_model_path,
-        train_history_path=train_history_path
+        train_history_path=train_history_path,
+        epochs=epochs,
+        early_stopping_patience=early_stopping_patience,
     )
 
     metrics = model.evaluate(validation_dataset, verbose=1)
@@ -121,11 +131,14 @@ def main(approach: str, save_model_path: str, train_history_path: str,  current_
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--approach", type=str, help="Approach to use (1 = Sin/Cos, 2 = Directional discriminators)", choices=["1", "2"])
+    parser.add_argument("--approach", type=str, help="Approach to use (1 = Sin & Cos, 2 = Directional discriminators)", choices=["1", "2"])
     parser.add_argument("--n_neurons_middle_layer", type=int, default=100)
     parser.add_argument("--dropout_rate", type=float, default=0.2)
     parser.add_argument("--learning_rate", type=float, default=0.001)
     parser.add_argument("--batch_size", type=int, default=32)
+    parser.add_argument("--epochs", type=int, default=100)
+    parser.add_argument("--early_stopping_patience", type=int, default=10)
+    parser.add_argument("--verbose", type=int, default=1, choices=[0, 1, 2])
     parser.add_argument("--should_augment", type=bool, default=True)
     parser.add_argument("--save_model_path", type=str, help="Path to save the model")
     parser.add_argument("--train_history_path", type=str, help="Path to save the training history")
@@ -138,5 +151,8 @@ if __name__ == "__main__":
         approach=args.approach,
         save_model_path=args.save_model_path,
         train_history_path=args.train_history_path,
-        current_config=current_config
+        current_config=current_config,
+        verbose=args.verbose,
+        epochs=args.epochs,
+        early_stopping_patience=args.early_stopping_patience,
     )

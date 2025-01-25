@@ -108,7 +108,7 @@ def main(model_path, images_path, approach: str, batch_size=32, output_path=None
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Validate a model')
     parser.add_argument('--model_path', type=str, help='Path to the model', required=True)
-    parser.add_argument("--approach", type=str, help="Approach to use (1 = Sin/Cos, 2 = Directional discriminators)", choices=["1", "2"], required=True)
+    parser.add_argument("--approach", type=str, help="Approach to use (1 = Sin & Cos, 2 = Directional discriminators)", choices=["1", "2"], required=True)
     parser.add_argument('--images_path', type=str, help='Path to the images', required=True)
     parser.add_argument('--output_path', type=str, help='Path to the output file', required=True)
     parser.add_argument('--visualizations_path', type=str, help='Path to the visualizations', default=None)
