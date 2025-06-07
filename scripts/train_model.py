@@ -26,20 +26,20 @@ from car_azimuth_predictor.model_generation import generate_model
 
 def main(
     approach: str,
+    backbone_name: str,
     save_model_path: str,
     train_history_path: str,
     current_config=None,
     verbose=2,
     epochs=100,
     early_stopping_patience=10,
+    n_neurons_middle_layer=100,
+    dropout_rate=0.2,
+    learning_rate=0.001,
+    batch_size = 32,
+    should_augment = True
 ):
     assert approach in ["1", "2"], "Approach must be 1 or 2"
-
-    n_neurons_middle_layer = 100
-    dropout_rate = 0.2
-    learning_rate = 0.001
-    batch_size = 32
-    should_augment = True
 
     if approach == "1":
         pose_flip_fn = horizontal_flip_pose_sin_cos_output
@@ -56,7 +56,11 @@ def main(
         augment=should_augment,
     )
 
-    input_layer = tf.keras.layers.Input(shape=(1280,))
+    head_input_size = 1280
+    if backbone_name == 'mobilenet':
+        head_input_size = 576
+
+    input_layer = tf.keras.layers.Input(shape=(head_input_size, ))
     in_to_dense = tf.keras.layers.Dropout(dropout_rate, name="Dropout")(input_layer)
 
     if n_neurons_middle_layer:
@@ -102,7 +106,7 @@ def main(
         # Loss
         loss = angle_double_output_loss
 
-    model = generate_model(current_config, top_model=bottom)
+    model = generate_model(head_model=bottom, model_backbone_name=backbone_name)
 
     print("Number of trainable weights:", count_params(model.trainable_weights))
     # model.summary()
@@ -132,6 +136,7 @@ def main(
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--approach", type=str, help="Approach to use (1 = Sin & Cos, 2 = Directional discriminators)", choices=["1", "2"])
+    parser.add_argument("--backbone", type=str, default="efficientnet", choices=["efficientnet", "mobilenet"])
     parser.add_argument("--n_neurons_middle_layer", type=int, default=100)
     parser.add_argument("--dropout_rate", type=float, default=0.2)
     parser.add_argument("--learning_rate", type=float, default=0.001)
@@ -149,10 +154,15 @@ if __name__ == "__main__":
 
     main(
         approach=args.approach,
+        backbone_name=args.backbone,
         save_model_path=args.save_model_path,
         train_history_path=args.train_history_path,
         current_config=current_config,
         verbose=args.verbose,
         epochs=args.epochs,
         early_stopping_patience=args.early_stopping_patience,
+        n_neurons_middle_layer=args.n_neurons_middle_layer,
+        dropout_rate=args.dropout_rate,
+        learning_rate=args.learning_rate,
+        batch_size=args.batch_size,
     )
