@@ -68,6 +68,16 @@ def main(approach, model_path: str, current_config=None, visualizations_path: st
         'rmse',
         'acc_pi_6',
     ]
+    if approach == "1":
+        # Slightly different order
+        metric_names = [
+            'loss',
+            'mean_absolute_angle_error',
+            'rmse',
+            'r2',
+            'median_absolute_angle_error',
+            'acc_pi_6',
+        ]
 
     if visualizations_path is not None:
         visualize_single_predictions(model, validation_dataset, save_path=visualizations_path)
