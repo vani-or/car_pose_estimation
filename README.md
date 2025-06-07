@@ -66,12 +66,12 @@ The metrics we use:
 
 ## Model weights
 
-| Backbone                            | Approach | Params  | File size | MAE    | RMSE    | R2    | π/6   | Link                                                                 |
-|-------------------------------------|----------|---------|-----------|--------|---------|-------|-------|----------------------------------------------------------------------|
-| EfficientNetB0 + hidden layer 100n  | 1        | 4,135,850 | 49M       | 6.400  | 12.487  | 0.964 | 0.973 | [LINK](https://drive.google.com/file/d/1tYUuUScKSRhMLSxQlsP2VeaHI9NDmRP2/view?usp=drive_link) |
-| EfficientNetB0 + hidden layer 100n  | 2        | 4,135,850 | 49M       | 6.380  | 12.587  | 0.960 | 0.968 | [LINK](https://drive.google.com/file/d/1K1YAOPEruN0QdMpOPRRDsZTsFQIgPA-3/view?usp=drive_link) |
-| MobileNetV3Small + hidden layer 32n | 1        | 945,538   | 12M       | 10.418 | 22.640  | 0.890 | 0.948 | [LINK](https://drive.google.com/file/d/1D36XAw6W0FB0bojEThX12ZCAEq2NFSAF/view?usp=drive_link) |
-| MobileNetV3Small + hidden layer 32n | 2        | 945,538   | 12M       | 9.816  | 20.293  | 0.902 | 0.941 | [LINK](https://drive.google.com/file/d/1P6g4gTJZdC4Q8eiOnxKIcrTk10UPpfae/view?usp=drive_link) |
+| Backbone                            | Approach | Params  | File size | MAE    | RMSE    | R²    | Acc π/6 | Link                                                                 |
+|-------------------------------------|----------|---------|-----------|--------|---------|-------|---------|----------------------------------------------------------------------|
+| EfficientNetB0 + hidden layer 100n  | 1        | 4,135,850 | 49M       | 6.400  | 12.487  | 0.964 | 0.973   | [LINK](https://drive.google.com/file/d/1tYUuUScKSRhMLSxQlsP2VeaHI9NDmRP2/view?usp=drive_link) |
+| EfficientNetB0 + hidden layer 100n  | 2        | 4,135,850 | 49M       | 6.380  | 12.587  | 0.960 | 0.968   | [LINK](https://drive.google.com/file/d/1K1YAOPEruN0QdMpOPRRDsZTsFQIgPA-3/view?usp=drive_link) |
+| MobileNetV3Small + hidden layer 32n | 1        | 945,538   | 12M       | 10.418 | 22.640  | 0.890 | 0.948   | [LINK](https://drive.google.com/file/d/1D36XAw6W0FB0bojEThX12ZCAEq2NFSAF/view?usp=drive_link) |
+| MobileNetV3Small + hidden layer 32n | 2        | 945,538   | 12M       | 9.816  | 20.293  | 0.902 | 0.941   | [LINK](https://drive.google.com/file/d/1P6g4gTJZdC4Q8eiOnxKIcrTk10UPpfae/view?usp=drive_link) |
 
 
 ## Scripts
